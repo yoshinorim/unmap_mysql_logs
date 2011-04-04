@@ -1,0 +1,10 @@
+unmap_mysql_logs - Unmapping mysql log files (mainly InnoDB log files, binary log files and relay log files) from filesystem cache to allocate memory space for mysqld
+
+Objective:
+ Older Linux kernel (earlier than 2.6.28) had bugs that aggressive usage on filesystem cache swaps processes even though vm.swappiness == 0. This sometimes serious swapping issues especially if innodb_log_file_size is large. As a workaround, unmapping write-mostly files from filesystem cache frequently (i.e. invoking this script per 10 minutes) helps a lot.
+ 
+How to use:
+* Install Inline::C cpan module, or install perl-version, perl-Parse-RecDescent, perl-Inline RPM packages
+* Execute unmap_mysql_logs
+
+
